@@ -47,14 +47,57 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Contact form demo handler
-  const contactForm = document.getElementById('contactForm');
+  // Contact form handler with Web3Forms
+  const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      // Basic demo behavior: show a quick confirmation and reset
-      alert('Thanks — your message has been received (demo).');
-      contactForm.reset();
+      
+      // Hide previous messages
+      const successMsg = document.getElementById('form-success');
+      const errorMsg = document.getElementById('form-error');
+      if (successMsg) successMsg.classList.add('hidden');
+      if (errorMsg) errorMsg.classList.add('hidden');
+      
+      // Check if access key is set
+      const accessKey = contactForm.querySelector('input[name="access_key"]').value;
+      if (accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY_HERE') {
+        if (errorMsg) {
+          errorMsg.textContent = '✗ Contact form not configured. Please set your Web3Forms access key.';
+          errorMsg.classList.remove('hidden');
+        }
+        return;
+      }
+      
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          if (successMsg) successMsg.classList.remove('hidden');
+          contactForm.reset();
+          // Scroll to success message
+          setTimeout(() => {
+            if (successMsg) successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 100);
+        } else {
+          if (errorMsg) {
+            errorMsg.textContent = '✗ ' + (data.message || 'Failed to send message. Please try again.');
+            errorMsg.classList.remove('hidden');
+          }
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+        if (errorMsg) {
+          errorMsg.textContent = '✗ Network error. Please check your connection and try again.';
+          errorMsg.classList.remove('hidden');
+        }
+      }
     });
   }
 });

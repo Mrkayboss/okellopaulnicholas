@@ -579,7 +579,7 @@
                         <a href="#projects" class="btn-primary">
                             <span class="material-symbols-outlined text-lg">work</span> View Projects
                         </a>
-                        <a href="#" class="btn-outline">
+                        <a href="assets/PDF/Okello Paul Nicholas CV.docx" download="OKELLO PAUL NICHOLAS CV.pdf" class="btn-outline">
                             <span class="material-symbols-outlined text-lg">download</span> Resume
                         </a>
                         <a href="#contact" class="btn-outline">
@@ -612,8 +612,8 @@
 
                 <!-- Right: Portrait -->
                 <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="800" class="flex justify-center lg:justify-end">
-                    <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden glass p-2 shadow-2xl">
-                        <img src="/assets/images/CEO.jpeg" alt="Okello Paul" loading="eager" decoding="async" fetchpriority="high" class="w-full h-full object-cover rounded-xl transition duration-700" />
+                    <div class="relative w-80 h-96 md:w-96 md:h-full lg:w-full lg:h-full lg:max-w-2xl rounded-2xl overflow-hidden glass p-2 shadow-2xl">
+                        <img src="/assets/images/kaytech.jpeg" alt="Okello Paul" loading="eager" decoding="async" fetchpriority="high" class="w-full h-full object-contain rounded-xl transition duration-700" />
                         <div class="absolute inset-0 rounded-2xl ring-1 ring-white/5 pointer-events-none"></div>
                     </div>
                 </div>
@@ -1332,29 +1332,36 @@
                     <div class="lg:col-span-2" data-aos="fade-up" data-aos-delay="100">
                         <div class="card p-6 md:p-8">
                             <h3 class="text-xl font-bold mb-4" style="color:var(--text-primary);">Send Me a Message</h3>
-                            <form id="contact-form">
+                            <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                                <!-- Web3Forms Access Key - Replace with your actual key from web3forms.com -->
+                                <input type="hidden" name="access_key" value="59e9c6cc-1c9a-4f2b-aa59-5a08b7efc47f" />
+                                <input type="hidden" name="subject" value="New Contact Form Submission from Portfolio" />
+                                <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+                                <input type="hidden" name="redirect" value="" />
+                                
                                 <div class="grid sm:grid-cols-2 gap-4">
                                     <div>
                                         <label class="block text-sm font-medium mb-1" style="color:var(--text-secondary);">Full Name</label>
-                                        <input type="text" required class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-accent/20 transition" style="background:var(--bg-primary); border-color:var(--border-color); color:var(--text-primary);" placeholder="Okello Paul" />
+                                        <input type="text" name="name" required class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-accent/20 transition" style="background:var(--bg-primary); border-color:var(--border-color); color:var(--text-primary);" placeholder="Okello Paul" />
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium mb-1" style="color:var(--text-secondary);">Email Address</label>
-                                        <input type="email" required class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-accent/20 transition" style="background:var(--bg-primary); border-color:var(--border-color); color:var(--text-primary);" placeholder="paul@example.com" />
+                                        <input type="email" name="email" required class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-accent/20 transition" style="background:var(--bg-primary); border-color:var(--border-color); color:var(--text-primary);" placeholder="paul@example.com" />
                                     </div>
                                 </div>
                                 <div class="mt-4">
                                     <label class="block text-sm font-medium mb-1" style="color:var(--text-secondary);">Subject</label>
-                                    <input type="text" class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-accent/20 transition" style="background:var(--bg-primary); border-color:var(--border-color); color:var(--text-primary);" placeholder="Project Inquiry" />
+                                    <input type="text" name="subject_message" class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-accent/20 transition" style="background:var(--bg-primary); border-color:var(--border-color); color:var(--text-primary);" placeholder="Project Inquiry" />
                                 </div>
                                 <div class="mt-4">
                                     <label class="block text-sm font-medium mb-1" style="color:var(--text-secondary);">Message</label>
-                                    <textarea rows="5" required class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-accent/20 transition" style="background:var(--bg-primary); border-color:var(--border-color); color:var(--text-primary);" placeholder="Tell me about your project..."></textarea>
+                                    <textarea rows="5" name="message" required class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-accent/20 transition" style="background:var(--bg-primary); border-color:var(--border-color); color:var(--text-primary);" placeholder="Tell me about your project..."></textarea>
                                 </div>
                                 <button type="submit" class="btn-primary mt-4 w-full sm:w-auto">
                                     <span class="material-symbols-outlined text-lg">send</span> Send Message
                                 </button>
                                 <div id="form-success" class="mt-4 hidden text-sm font-medium" style="color:#4ade80;">✓ Message sent successfully!</div>
+                                <div id="form-error" class="mt-4 hidden text-sm font-medium" style="color:#ff6b6b;">✗ Something went wrong. Please try again.</div>
                             </form>
                         </div>
                     </div>
